@@ -81,7 +81,7 @@ def Recommendations(Drawing, Dancing, Singing, Sports, VideoGame, Acting, Travel
                     Photography, Teaching, Exercise, Coding, ElectricityComponents, MechanicParts, 
                     ComputerParts, Researching, Architecture, HistoricCollection, Botany, Zoology, Physics, Accounting, 
                     Economics, Sociology, Geography, Psycology, History, Science, BussinessEducation, Chemistry, Mathematics, 
-                    Biology, Makeup, Designing, ContentWriting, Crafting, Literature, Reading, Cartooning, Debating, Astrology, 
+                    Biology, Makeup, Designing, ContentWriting, Crafting, Literature, Reading, Cartooning, Debating, Asrtology, 
                     Hindi, French, English, Urdu, OtherLanguage, SolvingPuzzles, Gymnastics, Yoga, Engeeniering, Doctor, 
                     Pharmisist, Cycling, Knitting, Director, Journalism, Bussiness, ListeningMusic):
 
@@ -91,7 +91,7 @@ def Recommendations(Drawing, Dancing, Singing, Sports, VideoGame, Acting, Travel
                                ComputerParts, Researching, Architecture, HistoricCollection, Botany, Zoology, 
                                Physics, Accounting, Economics, Sociology, Geography, Psycology, History, Science, 
                                BussinessEducation, Chemistry, Mathematics, Biology, Makeup, Designing, ContentWriting, 
-                               Crafting, Literature, Reading, Cartooning, Debating, Astrology, Hindi, French, English, 
+                               Crafting, Literature, Reading, Cartooning, Debating, Asrtology, Hindi, French, English, 
                                Urdu, OtherLanguage, SolvingPuzzles, Gymnastics, Yoga, Engeeniering, Doctor, Pharmisist, 
                                Cycling, Knitting, Director, Journalism, Bussiness, ListeningMusic]])
 
@@ -112,6 +112,7 @@ def Recommendations(Drawing, Dancing, Singing, Sports, VideoGame, Acting, Travel
 
 @app.route("/")
 def home():
+    session.clear()
     return render_template('home.html')
 
 app.secret_key = 'Zeal1234'
@@ -120,17 +121,21 @@ app.secret_key = 'Zeal1234'
 def recommend():
     # return render_template('recommend.html')
     # return render_template('group1.html')
+   
     return render_template('g1.html')
 
 
 @app.route('/group1', methods=['GET', 'POST'])
 def group1():
     if request.method == 'POST':
+        # print(request.form)
+        # print(session)
         for field in ['Drawing', 'Dancing', 'Singing', 'Acting', 'Makeup', 'Designing', 'ContentWriting', 'Crafting', 
                       'Literature', 'Reading', 'Cartooning', 'Debating', 'Asrtology', 'Director', 'Journalism']:
-            session[field] = int(request.form.get(field, 0))
+            session[field] = int(request.form.get(field.lower(), 0))
+        print(session)
         return redirect(url_for('group2'))
-    return render_template('group1.html')
+    return render_template('g1.html')
 
 
 
@@ -139,7 +144,7 @@ def group2():
     if request.method == 'POST':
         for field in ['Teaching', 'Researching', 'HistoricCollection', 'Physics', 'Chemistry', 'Biology', 'Mathematics', 
                       'Geography', 'History', 'Sociology', 'Psycology', 'Accounting', 'Economics', 'Science', 'BussinessEducation', 
-                      'English', 'Hindi', 'French', 'Urdu', 'OtherLanguage']:
+                      'English', 'Hindi', 'French', 'Urdu', 'Architecture', 'Botany', 'Zoology', 'OtherLanguage']:
             session[field] = int(request.form.get(field, 0))
         return redirect(url_for('group3'))
     return render_template('group2.html')
@@ -162,6 +167,7 @@ def group4():
         for field in ['Sports', 'VideoGame', 'Travelling', 'Gardening', 'Animals', 'Photography', 'Exercise', 'SolvingPuzzles', 
                       'Gymnastics', 'Yoga', 'Cycling', 'Knitting', 'ListeningMusic']:
             session[field] = int(request.form.get(field, 0))
+        print(session)
 
         # Call Recommendations with all session data
         final_recommendations = Recommendations(**{key: session.get(key, 0) for key in session})

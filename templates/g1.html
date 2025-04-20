@@ -37,7 +37,7 @@
         }
     
         .feedback-form td {
-            background-color: #DAFFFB;;
+            background-color: white;;
         }
     
         /* Square radio buttons */
@@ -180,7 +180,7 @@
             <div class="row">
                 {% for field in [
                     'Drawing', 'Dancing', 'Singing', 'Acting', 'Makeup', 'Designing', 'ContentWriting', 'Crafting', 
-                    'Literature', 'Reading', 'Cartooning', 'Debating', 'Astrology', 'Director', 'Journalism'
+                    'Literature', 'Reading', 'Cartooning', 'Debating', 'Asrtology', 'Director', 'Journalism'
                 ] %}
                 <!-- <div class="col-md-6 mb-3">
                     <div class="form-group">
@@ -212,7 +212,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Sr No</th>
+                            <!-- <th>Sr No</th> -->
                             <th>Hobby</th>
                             <th>Yes</th>
                             <th>No</th>
@@ -221,13 +221,13 @@
                     <tbody>
                         {% for field in [
                             'Drawing', 'Dancing', 'Singing', 'Acting', 'Makeup', 'Designing', 'ContentWriting', 'Crafting', 
-                            'Literature', 'Reading', 'Cartooning', 'Debating', 'Astrology', 'Director', 'Journalism'
+                            'Literature', 'Reading', 'Cartooning', 'Debating', 'Asrtology', 'Director', 'Journalism'
                         ] %}
                         <tr>
-                            <td>{{ loop.index }}</td>
+                            <!-- <td>{{ loop.index }}</td> -->
                             <td>{{ field }}</td>
-                            <td><input type="radio" name="{{ field | lower }}" value="yes"></td>
-                            <td><input type="radio" name="{{ field | lower }}" value="no"></td>
+                            <td><input type="radio" name="{{ field | lower }}" value="1"></td>
+                            <td><input type="radio" name="{{ field | lower }}" value="0"></td>
                         </tr>
                         {% endfor %}
                     </tbody>
