@@ -71,7 +71,7 @@ def Recommendations(Drawing, Dancing, Singing, Sports, VideoGame, Acting, Travel
     probabilities = model.predict_proba(scaled_features)
 
     # Get top five predicted classes along with their probabilities 
-    top_classes_idx = np.argsort(-probabilities[0])[:5]   
+    top_classes_idx = np.argsort(-probabilities[0])[:3]   
 
     top_classes_name_probs = [(class_names[idx], probabilities[0][idx]) for idx in top_classes_idx]
 
@@ -140,7 +140,7 @@ def group4():
         # Call Recommendations with all session data
         final_recommendations = Recommendations(**{key: session.get(key, 0) for key in session})
 
-        return render_template('results.html', recommendations=final_recommendations)
+        return render_template('r1.html', recommendations=final_recommendations)
 
     return render_template('group4.html')
 
