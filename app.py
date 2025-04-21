@@ -4,8 +4,8 @@ import numpy as np
 
 app = Flask(__name__)
 
-scaler = pickle.load(open("Models/scaler1.pkl", "rb"))
-model = pickle.load(open("Models/model1.pkl", "rb"))
+scaler = pickle.load(open("Models/scaler2.pkl", "rb"))
+model = pickle.load(open("Models/model2.pkl", "rb"))
 
 # class_names = ['Lawyer', 'Doctor', 'Government Officer', 'Artist', 'Unknown',
 #                'Software Engineer', 'Teacher', 'Business Owner', 'Scientist',
@@ -41,41 +41,10 @@ model = pickle.load(open("Models/model1.pkl", "rb"))
 
 #     return top_classes_name_probs
 
-class_names = ['BBA- Bachelor of Business Administration',
-    'BEM- Bachelor of Event Management',
-    'Integrated Law Course- BA + LL.B',
-    'BJMC- Bachelor of Journalism and Mass Communication',
-    'BFD- Bachelor of Fashion Designing',
-    'BBS- Bachelor of Business Studies',
-    'BTTM- Bachelor of Travel and Tourism Management',
-    'BVA- Bachelor of Visual Arts', 
-    'BA in History',
-    'B.Arch- Bachelor of Architecture',
-    'BCA- Bachelor of Computer Applications',
-    'B.Sc.- Information Technology', 
-    'B.Sc- Nursing',
-    'BPharma- Bachelor of Pharmacy', 
-    'BDS- Bachelor of Dental Surgery',
-    'Animation, Graphics and Multimedia', 
-    'B.Sc- Applied Geology',
-    'B.Sc.- Physics', 
-    'B.Sc. Chemistry',
-    'B.Sc. Mathematics',
-    'B.Tech.-Civil Engineering',
-    'B.Tech.-Computer Science and Engineering',
-    'B.Tech.-Electronics and Communication Engineering',
-    'B.Tech.-Electrical and Electronics Engineering',
-    'B.Tech.-Mechanical Engineering', 
-    'B.Com- Bachelor of Commerce',
-    'BA in Economics', 
-    'CA- Chartered Accountancy',
-    'CS- Company Secretary', 
-    'Diploma in Dramatic Arts', 
-    'MBBS',
-    'Civil Services', 
-    'BA in English', 
-    'BA in Hindi', 
-    'B.Ed.']
+class_names = [
+    'commerce', 'arts', 'law', 'business', 'architecture', 
+    'engineering', 'medicine', 'science']
+
 
 def Recommendations(Drawing, Dancing, Singing, Sports, VideoGame, Acting, Travelling, Gardening, Animals, 
                     Photography, Teaching, Exercise, Coding, ElectricityComponents, MechanicParts, 
@@ -113,7 +82,7 @@ def Recommendations(Drawing, Dancing, Singing, Sports, VideoGame, Acting, Travel
 @app.route("/")
 def home():
     session.clear()
-    return render_template('home.html')
+    return render_template('h1.html')
 
 app.secret_key = 'Zeal1234'
 
@@ -122,7 +91,7 @@ def recommend():
     # return render_template('recommend.html')
     # return render_template('group1.html')
    
-    return render_template('g1.html')
+    return render_template('g11.html')
 
 
 @app.route('/group1', methods=['GET', 'POST'])
@@ -135,7 +104,7 @@ def group1():
             session[field] = int(request.form.get(field.lower(), 0))
         print(session)
         return redirect(url_for('group2'))
-    return render_template('g1.html')
+    return render_template('g11.html')
 
 
 
@@ -167,8 +136,7 @@ def group4():
         for field in ['Sports', 'VideoGame', 'Travelling', 'Gardening', 'Animals', 'Photography', 'Exercise', 'SolvingPuzzles', 
                       'Gymnastics', 'Yoga', 'Cycling', 'Knitting', 'ListeningMusic']:
             session[field] = int(request.form.get(field, 0))
-        print(session)
-
+        
         # Call Recommendations with all session data
         final_recommendations = Recommendations(**{key: session.get(key, 0) for key in session})
 
