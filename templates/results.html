@@ -105,7 +105,7 @@
         .image-wrapper {
             width: 220px;
             height: 220px;
-            border: 1px solid var(--primary);
+            /* border: 1px solid var(--primary); */
         }
 
         .card-body {
@@ -146,12 +146,12 @@
     </nav>
 
     <div class="container my-5 px-3">
-        <h3 class="text-center fw-semibold mb-4">Top Recommendations Based on Your Marks</h3>
+        <h3 class="text-center fw-semibold mb-4">Career Recommendations Based on Your Interest</h3>
         <div class="row gx-3 gy-4">
             {% for rec in recommendations %}
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="card h-100 text-center border-0 shadow-sm rounded-4 hover-shadow overflow-hidden">
-                        <div class="image-wrapper mx-auto mt-5 mb-5 rounded-3">
+                        <div class="image-wrapper mx-auto mt-5 mb-4 rounded-3">
                             <img src="{{ url_for('static', filename=rec[0]|lower|replace(' ', '_') + '.jpg') }}"
                                  alt="{{ rec[0] }}"
                                  class="img-fluid object-fit-contain">
