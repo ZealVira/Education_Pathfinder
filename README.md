@@ -7,7 +7,7 @@ This is an AI-based web application that helps students identify suitable career
 
 📋 Multi-step interest form grouped into categories
 
-📊 Top 5 career suggestions based on input
+📊 Top 3 career suggestions based on input
 
 💾 Session handling for user responses
 
